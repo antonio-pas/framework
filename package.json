@@ -1,0 +1,16 @@
+{
+  "name": "framework",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "esbuild src/app.ts --bundle --sourcemap --minify --outfile=dist/out.js",
+    "watch": "npm run build -- --watch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "esbuild": "^0.15.11"
+  }
+}

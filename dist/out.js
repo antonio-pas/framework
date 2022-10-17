@@ -1,0 +1,2 @@
+(()=>{function n(t){if(typeof t.type=="function")return t.type(t.props);let r=document.createElement(t.type);for(let o in t.props)r.setAttribute(o,t.props[o]);return t.children.map(o=>typeof o=="string"?document.createTextNode(o):n(o)).map(o=>{r.appendChild(o)}),r}function p(t,r){(typeof t=="string"?document.querySelector(t):t).appendChild(n(r))}function e(t,r,...o){return{type:t,props:r,children:o}}function m({name:t,color:r}){return e("h1",{style:`color: ${r}`},`Hello, ${t}!`)}p("#app",e(m,{color:"#090",name:"world"}));})();
+//# sourceMappingURL=out.js.map

@@ -11,7 +11,7 @@ export function render(node: VDom): HTMLElement {
   for (let key in node.props) {
     element.setAttribute(key, node.props[key]);
   }
-  node.children
+  node.children && node.children
     .map((child) => {
       return typeof child == "string"
         ? document.createTextNode(child)
@@ -33,5 +33,6 @@ export function h(
   props: object,
   ...children: (VDom | string)[]
 ): VDom {
+  console.log(children)
   return { type, props, children };
 }

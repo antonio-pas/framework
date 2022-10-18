@@ -1,3 +1,4 @@
 import { mount, h } from './vdom';
 import { Component } from './Component';
-mount("#app", h(Component, { color: '#090', name: 'world' }));
+let c = h(Component, {color:'#900', name:'underworld'})
+mount("#app", h(Component, { color: '#090', name: 'world' }, c));

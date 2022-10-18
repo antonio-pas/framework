@@ -5,7 +5,7 @@ export type VDom = {
 };
 export function render(node: VDom): HTMLElement {
   if (typeof node.type == "function") {
-    return node.type(node.props);
+    return render(node.type(node.props, node.children));
   }
   let element = document.createElement(node.type);
   for (let key in node.props) {

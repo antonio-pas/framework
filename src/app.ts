@@ -1,4 +1,15 @@
-import { mount, h } from './vdom';
-import { Component } from './Component';
-let c = h(Component, {color:'#900', name:'underworld'})
-mount("#app", h(Component, { color: '#090', name: 'world' }, c));
+import { mount, h, VDom } from "./vdom";
+function Component(_props: any, _children: VDom[]): VDom {
+  let x = 0.0;
+  return h(
+    "h1",
+    {
+      style: `color: #090`,
+      onclick: () => {
+        alert(x++);
+      },
+    },
+    `click me`
+  );
+}
+mount("#app", h(Component, {}));

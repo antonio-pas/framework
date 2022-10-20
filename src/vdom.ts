@@ -1,13 +1,26 @@
 export type VDom = {
-  type: string | Function;
+  type: string | Component;
   props: any;
   children: VDom[];
 } | string;
+export abstract class Component {
+  props = {};
+  children = [];
+  abstract render(): VDom;
+}
+export class Header extends Component {
+  render(): VDom {
+    return h('h1', {}, this.children[0]);
+  }
+}
 export function render(node: VDom): HTMLElement | Text {
   if (typeof node === "string")
     return document.createTextNode(node);
-  if (typeof node.type === "function")
-    return render(node.type(node.props, node.children));
+  if (node.type instanceof Component){
+    node.type.props = node.props;
+    node.type.children = node.children;
+    return render(node.type.render());
+  }
 
   let element = document.createElement(node.type);
   for (let key in node.props) {
@@ -35,7 +48,7 @@ export function mount(element: HTMLElement | string, vdom: VDom): void {
   ).appendChild(render(vdom));
 }
 export function h(
-  type: string | Function,
+  type: string | Component,
   props: object,
   ...children: VDom[]
 ): VDom {
